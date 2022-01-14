@@ -1,0 +1,80 @@
+package com.chandra.learning;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ProductApp {
+	public static void main(String[] args) {
+		int choice =-1;
+		Scanner a = new Scanner(System.in);
+		Scanner b = new Scanner(System.in);
+		ArrayList<String> list = new ArrayList<String>();
+		
+		do {
+			System.out.println("1.Create File");
+			System.out.println("2.Delete File");
+			System.out.println("3.Search for File");
+			choice = a.nextInt();
+			int i;
+			switch (choice) {
+			case 1:
+				System.out.println("Enter the number of files create :");
+				Scanner d = new Scanner(System.in);
+				int n = d.nextInt();
+				for(i = 0; i < n; i++) {
+					System.out.println("Enter the File Name :");
+					String file = b.nextLine();
+					file = file +".txt";
+					File Fname = new File(file);
+					try {
+						Fname.createNewFile();
+						System.out.println("File is created.");
+					}
+					catch (IOException e) {
+						System.out.println("File is not Created");
+					}
+				
+					list.add(file);
+				}
+				System.out.println(list);
+				
+			break;
+			case 2:
+				System.out.println("Enter the file to delete :");
+				Scanner c = new Scanner(System.in);
+				String Dfile = c.nextLine();
+				Dfile = Dfile + ".txt";
+				File Dname = new File(Dfile);
+				try {
+					list.remove(Dfile);
+					System.out.println("File is Deleted ");
+				}
+				catch (Exception e) {
+					System.out.println("Issue creating File is deleted ");
+				}
+				System.out.println("After delete list is ");
+				System.out.println(list);
+			break;
+			case 3:
+				System.out.println("Enter the file to search ");
+				Scanner e = new Scanner(System.in);
+				String Sfile = e.nextLine();
+				Sfile = Sfile + ".txt";
+				File fileSearch = new File(Sfile);
+				boolean cm = list.contains(Sfile);
+				if (cm) {
+					System.out.println("File Searched is in list ");
+				}
+				else {
+					System.out.println("File is not in list");
+				}
+				System.out.println(fileSearch);	
+				
+			}
+			
+		}while(choice != 0);
+	}
+
+}
